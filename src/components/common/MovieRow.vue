@@ -1,7 +1,5 @@
 <template>
   <div @click.prevent="clicked" class="reviewRow">
-    <img :src="baseImagePath + posterIconSize + movie.poster" class="pull-left posterIcon" v-if="movie.poster"/>
-    <img src="static/default-poster-92.jpg" class="pull-left posterIcon" v-else/>
     <div class="title">
       {{ movie.title }}
     </div>
@@ -18,7 +16,16 @@
         v-if="movie.stars != null"
         />
     </div>
-    <p>{{ movie.synopsis|truncate(300) }}</p>
+    <div class="flexContainer">
+      <div class="iconRowBox">
+        <img :src="baseImagePath + posterIconSize + movie.poster" class="posterIcon" v-if="movie.poster"/>
+        <img src="static/default-poster-92.jpg" class="pull-left posterIcon" v-else/>
+      </div>
+      <div class="textRowBox">
+        <p v-if="movie.synopsis">{{ movie.synopsis|truncate(300) }}</p>
+        <p v-else>No overview.</p>
+      </div>
+    </div>
   </div>
 </template>
 

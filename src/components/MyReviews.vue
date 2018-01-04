@@ -10,14 +10,25 @@
     <!-- End saved message -->
 
     <!-- New review button -->
-    <router-link :to="{ name: 'SearchMovie' }" class="btn btn-primary pull-right">New review</router-link>
+    <router-link :to="{ name: 'SearchMovie' }" class="btn btn-xs btn-primary pull-right">New review</router-link>
 
     <!-- Reviews list -->
     <h1>My Movie Reviews</h1>
     <hr/>
     <div class="row">
       <div class="col-md-12">
-        <div v-for="(review, index) in reviews">
+        <!-- filter box -->
+        <div class="form-group">
+          <input type="text" v-model="searchTerm" placeholder="Filter" class="form-control"/>
+        </div>
+
+        <!-- No reviews message -->
+        <div v-if="reviews.length == 0" class="text-center">
+          <p>You don't have any reviews.</p>
+          <p><strong><router-link :to="{ name: 'SearchMovie' }">Create your first review</router-link></strong></p>
+        </div>
+
+        <div v-for="(review, index) in reviews" v-if="review.title.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1">
           <button class="close deleteReview" @click.prevent="deleteReview(index)">
             <span>&times;</span>
           </button>
@@ -34,6 +45,12 @@
   import MovieRow from '@/components/common/MovieRow'
 
   export default {
+    data() {
+      return {
+        searchTerm: ''
+      }
+    },
+
     created() {
       // If marked as saved, set timeout to unmark and hide message
       if (this.reviewSaved) {

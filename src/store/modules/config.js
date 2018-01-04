@@ -4,7 +4,7 @@ const state = {
   posterBigSize: 'w300',
   posterIconSize: 'w92',
   posterSize: 'w185',
-  language: (window.navigator.userLanguage) ? window.navigator.userLanguage : window.navigator.languages[0]
+  language: (window.navigator.userLanguage) ? window.navigator.userLanguage : window.navigator.languages[0],
 }
 
 const getters = {
@@ -25,7 +25,7 @@ const getters = {
   },
   posterSize(state) {
     return state.posterSize;
-  }
+  },
 }
 
 export default {

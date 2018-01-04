@@ -61,6 +61,10 @@
     },
 
     created() {
+      // Collapse navbar
+      this.$store.commit("setNavbarCollapse", true);
+
+      // Clear daata
       this.unselectMovie();
       this.noResults = false;
     },
@@ -85,15 +89,13 @@
 
         // Get api results
         this.$http.get(url).then(
-          response => {
-
+          (response) => {
             if (response.body.results.length == 0) {
               this.noResults = true;
             }
 
             // Fill result with review objects
             for (let i = 0; i < response.body.results.length; i++) {
-
               // Create a movie object
               let movie = {
                 title: response.body.results[i].title,
@@ -117,7 +119,7 @@
               this.searchResults.push(movie);
             }
           },
-          error => {
+          (error) => {
             alert("A network error ocurred");
             console.log("ERROR" + error);
           }
@@ -125,11 +127,11 @@
       },
 
       selectMovie(movie) {
-
         // If the movie is in reviews, load existent review
         let index = this.getReviewIndex(movie);
         if (index != -1) {
           this.$store.commit("setReview", this.reviews[index]);
+          this.$router.push({ name: 'Review', params: { index: index } });
         } else {
           this.$store.commit("setReview", {
             title: movie.title,
@@ -142,6 +144,7 @@
             stars: 0,
             reviewText: ''
           });
+          this.$router.push({ name: 'Review' });
         }
       },
 
@@ -157,26 +160,6 @@
           stars: null,
           textReview: null
         });
-      },
-
-      saveReview() {
-        let index = this.getReviewIndex(this.review);
-        if (index != -1) {
-          // Update the review
-          this.$store.commit("updateReview", {
-            review: this.review,
-            index: index
-          });
-        } else {
-          // create new review
-          this.$store.commit("addReview", this.review);
-        }
-
-        // Mark as reviewSaved
-        this.$store.commit("setReviewSaved", true);
-
-        // Go to reviews list
-        this.$router.push({ name: 'MyReviews' });
       },
 
       getReviewIndex(review) {

@@ -18,15 +18,22 @@
     },
 
     created() {
-      this.$store.commit("setReview", this.reviews[this.$route.params.index]);
+      // Set the review by index
+      if (this.$route.params.index != null) {
+        this.$store.commit("setReview", this.reviews[this.$route.params.index]);
+      }
     },
 
     methods: {
       saveReview() {
-        this.$store.commit("updateReview", {
-          review: this.review,
-          index: this.$route.params.index
-        });
+        if (this.$route.params.index != null) {
+          this.$store.commit("updateReview", {
+            review: this.review,
+            index: this.$route.params.index
+          });
+        } else {
+          this.$store.commit("addReview", this.review);
+        }
 
         // Mark as review saved
         this.$store.commit("setReviewSaved", true);

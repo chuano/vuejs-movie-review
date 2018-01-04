@@ -1,34 +1,18 @@
 <template>
   <div class="row">
-    <!-- Sheet column -->
-    <div class="col-md-6">
-      <p v-if="review.synopsis">{{ review.synopsis }}</p>
-      <p v-else>No overview</p>
-      <div class="row">
-        <div class="col-md-9 text-center">
-          <img :src="baseImagePath + posterBigSize + review.poster" v-if="review.poster"/>
-          <img src="static/default-poster-300.jpg" class="pull-left posterIcon" v-else/>
-        </div>
-        <div class="col-md-3 text-center">
-          <p class="tmdbScore">{{ review.tmdbScore }}</p>
-          <p>{{ review.tmdbVoteCount }} votes</p>
-        </div>
-      </div>
-    </div>
-    <!-- End sheet column -->
-
     <!-- Review form column -->
     <div class="col-md-6">
+      <h2>Your review</h2>
       <form @submit.prevent="submited()">
         <div class="form-group">
-          <label>Review</label>
-          <textarea class="form-control" v-model="review.textReview"></textarea>
+          <textarea rows="7" class="form-control" v-model="review.textReview"></textarea>
         </div>
         <div class="form-group">
           <label>Rating</label>
           <star-rating v-model="review.stars"
             :star-size="26"
             :border-width="1"
+            :show-rating="false"
             border-color="#777"
             active-color="#009d64"/>
         </div>
@@ -38,6 +22,21 @@
       </form>
     </div>
     <!-- End review form column -->
+
+    <!-- Sheet column -->
+    <div class="col-md-6">
+      <h2>Overview</h2>
+      <p v-if="review.synopsis">{{ review.synopsis }}</p>
+      <p v-else>No overview</p>
+
+      <p class="text-center">
+        <img :src="baseImagePath + posterSize + review.poster" v-if="review.poster"/>
+        <img src="static/default-poster-300.jpg" class="pull-left posterIcon" v-else/>
+      </p>
+      <p class="tmdbScore text-center">{{ review.tmdbScore }}</p>
+      <p class="text-center">{{ review.tmdbVoteCount }} votes</p>
+    </div>
+    <!-- End sheet column -->
   </div>
 </template>
 <script>
@@ -54,7 +53,7 @@ export default {
   computed: {
     ...mapGetters({
       baseImagePath: 'baseImagePath',
-      posterBigSize: 'posterBigSize'
+      posterSize: 'posterSize'
     })
   },
 

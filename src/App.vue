@@ -3,10 +3,22 @@
     <!-- Header nav bar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <ul class="nav navbar-nav">
-          <li><router-link :to="{ 'name' : 'MyReviews' }">My Reviews</router-link></li>
-          <li><router-link :to="{ 'name' : 'SearchMovie' }">Search movie</router-link></li>
-        </ul>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" @click.prevent="setCollapse(!collapse)">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="navbar-brand">VueJs Movie Review</span>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div :class="{ 'collapse': collapse, 'navbar-collapse': true }">
+          <ul class="nav navbar-nav">
+            <li><router-link :to="{ 'name' : 'MyReviews' }" @click.native="setCollapse(true)">My Reviews</router-link></li>
+            <li><router-link :to="{ 'name' : 'SearchMovie' }" @click.native="setCollapse(true)">Search movie</router-link></li>
+          </ul>
+        </div>
       </div>
     </nav>
 
@@ -17,10 +29,9 @@
 
     <footer>
       <div class="text-center">
-        Author: @chuano -
         <a href="https://www.themoviedb.org/" target="_blank">
           This product uses the TMDb API but is not endorsed or certified by TMDb.
-          <img src="static/tmdb-logo.svg" width="36" height="36"/>
+          <img src="static/tmdb-logo.svg" width="30" height="30" class="hidden-sm hidden-xs"/>
         </a>
       </div>
     </footer>
@@ -29,7 +40,19 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+
+  data() {
+    return {
+      collapse: true
+    }
+  },
+
+  methods: {
+    setCollapse(collapse) {
+      this.collapse = collapse;
+    }
+  }
 }
 </script>
 
@@ -39,6 +62,10 @@ export default {
   }
   a:hover {
     text-decoration: none;
+  }
+  .body-container {
+    padding-top: 55px;
+    padding-bottom: 55px;
   }
 
   /**
@@ -53,13 +80,13 @@ export default {
    * Alert hacks
    */
   .alert {
-    top: 20px;
-    width: 360px;
-    left: 50%;
-    margin-left: -180px;
-    position: absolute;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0!important;
+    border-radius: 0;
     text-align: center;
-    padding-right: 15px;
     z-index: 99999;
   }
   .alert > .close {
@@ -78,14 +105,19 @@ export default {
     padding: 5px;
     border-bottom: 1px solid #eee;
     min-height: 100px;
+
+  }
+  .flexContainer {
+    display: flex;
   }
   .reviewRow:hover {
     background-color: #eee;
   }
-  .reviewRow > .posterIcon {
+  .reviewRow > .flexContainer > .iconRowBox > .posterIcon {
     margin-right: 10px;
-    width: 60px;
-    height: 90px;
+    width: 50px;
+    height: auto;
+    margin-top: 3px;
   }
   .reviewRow > .title {
     font-size: 20px;
@@ -103,38 +135,27 @@ export default {
   .reviewRow > .releaseDate > .vue-star-rating-inline > .vue-star-rating > .vue-star-rating-star svg {
     vertical-align: -2px!important;
   }
+  footer {
+    background-color: #eee;
+    border-top: 1px solid #ccc;
+    padding: 5px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
 
-  @media (max-width: 768px) {
-    /* Hide footer on mobile */
-    footer {
-      display: none!important;
-    }
-    /* Space for header and footer */
-    .body-container {
-      padding-top: 100px;
-    }
-    /* Poster position on mobile */
-    .reviewRow .posterIcon {
-       float: none!important;
-       display: block;
-       margin: auto!important;
+   @media (max-width: 768px) {
+     h1 {
+       font-size: 1.4em!important;
+       margin-top: 10px!important;
      }
-  }
-
-  @media (min-width: 769px) {
-    /* Show footer on large screen */
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #eee;
-      border-top: 1px solid #ccc;
-      padding: 5px;
-    }
-    /* Space for header and footer */
-    .body-container {
-      padding-top: 55px;
-      padding-bottom: 55px;
-    }
-  }
+     h2 {
+       font-size: 1.2em!important;
+       margin-top: 0!important;
+     }
+     hr {
+       margin-bottom: 10px!important;
+       margin-top: 10px!important;
+     }
+   }
 </style>
