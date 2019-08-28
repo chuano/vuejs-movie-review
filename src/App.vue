@@ -31,7 +31,7 @@
       <div class="text-center">
         <a href="https://www.themoviedb.org/" target="_blank">
           This product uses the TMDb API but is not endorsed or certified by TMDb.
-          <img src="static/tmdb-logo.svg" width="30" height="30" class="hidden-sm hidden-xs"/>
+          <img src="./assets/tmdb-logo.svg" width="30" height="30" class="hidden-sm hidden-xs"/>
         </a>
       </div>
     </footer>
@@ -39,21 +39,21 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
+  export default {
+    name: 'app',
 
-  data() {
-    return {
-      collapse: true
-    }
-  },
+    data() {
+      return {
+        collapse: true
+      }
+    },
 
-  methods: {
-    setCollapse(collapse) {
-      this.collapse = collapse;
+    methods: {
+      setCollapse(collapse) {
+        this.collapse = collapse;
+      }
     }
   }
-}
 </script>
 
 <style>
@@ -144,18 +144,18 @@ export default {
     width: 100%;
   }
 
-   @media (max-width: 768px) {
-     h1 {
-       font-size: 1.4em!important;
-       margin-top: 10px!important;
-     }
-     h2 {
-       font-size: 1.2em!important;
-       margin-top: 0!important;
-     }
-     hr {
-       margin-bottom: 10px!important;
-       margin-top: 10px!important;
-     }
-   }
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.4em!important;
+      margin-top: 10px!important;
+    }
+    h2 {
+      font-size: 1.2em!important;
+      margin-top: 0!important;
+    }
+    hr {
+      margin-bottom: 10px!important;
+      margin-top: 10px!important;
+    }
+  }
 </style>

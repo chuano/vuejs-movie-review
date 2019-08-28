@@ -7,7 +7,7 @@
 </template>
 <script>
   import { mapGetters } from 'vuex';
-  import MovieSheet from '@/components/common/MovieSheet'
+  import MovieSheet from '@/components/MovieSheet'
 
   export default {
     computed: {

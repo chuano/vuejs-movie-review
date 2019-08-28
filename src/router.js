@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import MyReviews from '@/components/MyReviews'
-import Review from '@/components/Review'
-import SearchMovie from '@/components/SearchMovie'
+import MyReviews from '@/views/MyReviews'
+import Review from '@/views/Review'
+import SearchMovie from '@/views/SearchMovie'
 
 Vue.use(Router)
 

@@ -42,7 +42,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
-  import MovieRow from '@/components/common/MovieRow'
+  import MovieRow from '@/components/MovieRow'
 
   export default {
     data() {

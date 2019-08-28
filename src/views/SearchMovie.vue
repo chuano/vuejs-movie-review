@@ -36,8 +36,8 @@
 </template>
 <script>
   import { mapGetters } from 'vuex';
-  import MovieRow from '@/components/common/MovieRow'
-  import MovieSheet from '@/components/common/MovieSheet'
+  import MovieRow from '@/components/MovieRow'
+  import MovieSheet from '@/components/MovieSheet'
 
   export default {
     data() {
@@ -61,9 +61,6 @@
     },
 
     created() {
-      // Collapse navbar
-      this.$store.commit("setNavbarCollapse", true);
-
       // Clear daata
       this.unselectMovie();
       this.noResults = false;
