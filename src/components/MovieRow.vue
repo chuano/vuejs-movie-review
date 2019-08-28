@@ -19,7 +19,7 @@
     <div class="flexContainer">
       <div class="iconRowBox">
         <img :src="baseImagePath + posterIconSize + movie.poster" class="posterIcon" v-if="movie.poster"/>
-        <img src="static/default-poster-92.jpg" class="pull-left posterIcon" v-else/>
+        <img src="../assets/default-poster-92.jpg" class="pull-left posterIcon" v-else/>
       </div>
       <div class="textRowBox">
         <p v-if="movie.synopsis">{{ movie.synopsis|truncate(300) }}</p>
