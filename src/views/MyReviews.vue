@@ -23,12 +23,12 @@
         </div>
 
         <!-- No reviews message -->
-        <div v-if="reviews.length == 0" class="text-center">
+        <div v-if="reviews.length === 0" class="text-center">
           <p>You don't have any reviews.</p>
           <p><strong><router-link :to="{ name: 'SearchMovie' }">Create your first review</router-link></strong></p>
         </div>
 
-        <div v-for="(review, index) in reviews" v-if="review.title.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1">
+        <div v-for="(review, index) in reviews" v-if="review.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1">
           <button class="close deleteReview" @click.prevent="deleteReview(index)">
             <span>&times;</span>
           </button>
