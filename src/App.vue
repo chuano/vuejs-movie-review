@@ -127,8 +127,7 @@
   }
   .reviewRow > .releaseDate {
     padding: 0;
-    margin: 0;
-    margin-bottom: 5px;
+    margin: 0 0 5px;
     color: #777;
     font-size: 0.8em;
   }
