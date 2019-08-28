@@ -29,7 +29,7 @@
     <div class="col-md-12" v-else>
       <h2><a @click.prevent="unselectMovie()"><i class="fa fa-arrow-left"></i></a> {{ review.title }}</h2>
       <hr/>
-      <MovieSheet :review="review" @submit="saveReview()"/>
+      <MovieSheet :review="review"/>
     </div>
     <!-- End movie sheet -->
   </div>
